@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+\input{hebrew_include}
+% The title and author in hebrew
+\title{כותרת בעברית}
+\author{שם הכותב בעברית}
+\begin{document}
+% Don't add page numbering in this document, this will be controlled by the main tex file
+\pagenumbering{gobble}
+% Use section* for it to be large, found in your tex editor and not numbered
+\section*{תקציר}
+	כאן יופיע התקציר בעברית
+	
+% Page describing the advisor
+\newpage
+\vspace*{\fill}
+עבודה זו נעשתה בהדרכתו של
+{\bf 
+שם המנחה
+}
+מן המחלקה למתמטיקה של אוניברסיטת בר־אילן.
+\vspace*{\fill}
+% Hebrew title page
+\begin{titlepage}
+\makeatletter
+\begin{center}
+אוניברסיטת בר אילן\\
+	\vspace*{3cm}
+	\textbf{\Large \@title}
+	\vspace{2cm}
+	
+	\vspace{2.5cm}
+	
+	\textbf{\@author}
+	
+	\vspace{1cm}
+	עבודה זו מוגשת כחלק מהדרישות לשם קבלת תואר מוסמך במחלקה למתמטיקה של אוניברסיטת בר-אילן
+		
+	\vspace*{\fill}
+	\textbf{רמת גן}
+	\hfill
+	\textbf{תשפ"ה}
+	
+\end{center}
+\makeatother
+\end{titlepage}
+\end{document}

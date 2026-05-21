@@ -1,0 +1,95 @@
+\documentclass[10pt,a4paper,final]{article}
+\input{input_file}
+
+\title{The thesis title}
+\author{Authour name}
+
+\begin{document}
+% Custom title page per library requirements
+\begin{titlepage}
+	\makeatletter
+	\begin{center}
+		
+		Bar-Ilan University\\
+		\vspace*{1cm}
+		\vspace{2cm}
+		
+		\textbf{\Large \@title}
+		
+		\vspace{2.5cm}
+		
+		\textbf{\@author}
+		
+		\vspace{1cm}
+		
+		Submitted in partial fulfillment of the requirements for the Master's Degree in the Department of Mathematics, Bar-Ilan University
+		
+		\vspace*{\fill}
+		\textbf{Ramat Gan, Israel}
+		\hfill
+		\textbf{2024}
+	\end{center}
+	\makeatother
+\end{titlepage}
+% Non numbered pages until the abstract
+\pagenumbering{gobble}
+\vspace*{\fill}
+\begin{center}
+	This work was carried out under the supervision of {\bf  ADVISOR NAME } \\
+	Department of Mathematics, Bar-Ilan University.
+\end{center}
+\vspace*{\fill}
+\newpage
+\textbf{Acknowledgments}\\
+Acknowledge whoever you want here
+
+\newpage
+\tableofcontents
+\newpage
+% Abstract page numbering is roman
+\pagenumbering{roman}
+\begin{abstract}
+	% Add the abstract to the TOC
+	\phantomsection
+	\addcontentsline{toc}{section}{Abstract}
+	abstract of the thesis
+\end{abstract}
+\newpage
+
+% The actual thesis uses regular page numbers
+\pagenumbering{arabic}
+% ------------- start of content --------------- %
+\section{Actual content of the thesis}
+To render the bibliography we need to add some random citation. Therefore we include the link to the installation guide of Lyx with Hebrew \cite{lyxguide}. With this setup for your LateX, this template should work just fine.
+
+
+% ------------- end of content ----------------- %
+
+
+% Add the bibliography to TOC
+\phantomsection
+\addcontentsline{toc}{section}{References}
+% The bibliogrpahy style
+\bibliographystyle{alpha}
+% Your bibliogrpahy file should be refs.bib (or change the name here)
+\bibliography{refs}
+
+
+% --------- Hebrew pages in the end ------------ %
+% Hebrew abstract appears in TOC with Hebrew alphabet nummerbing
+\clearpage
+\renewcommand{\thepage}{$\aleph$}
+
+
+% ~~~~~~~~~~~~~~~~~  WARNING ~~~~~~~~~~~~~~~~~~~~~~
+% You must redefine this value to the correct number of pages of the hebrew abstract (or more precisely -- the number of pages you want to appear numbered in hebrew)
+\newcommand\LastAbstractPage{1}
+\newcommand\FirstNonAbstractPage{
+	\number\numexpr\LastAbstractPage+1\relax
+	}
+% Include the hebrew abstract, while adding it to the TOC.
+\includepdf[pages=1-\LastAbstractPage, pagecommand={\phantomsection\addcontentsline{toc}{section}{Hebrew Abstract}}]{hebrew_abstract.pdf}
+% Hebrew title page and acknowledgement without appearing in TOC or numbered
+\includepdf[pages={\FirstNonAbstractPage-}]{hebrew_abstract.pdf}
+
+\end{document}
