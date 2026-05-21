@@ -1,6 +1,15 @@
 \documentclass[10pt,a4paper,final]{article}
-\input{input_file}
+% ----------- Premable ---------------------------- %
+\usepackage{pdfpages} % For includepdf
+\usepackage{hyperref} % For phantomsection
 
+% You must redefine this value to the correct number of pages of the hebrew abstract (or more precisely -- the number of pages you want to appear numbered in hebrew)
+\newcommand\LastAbstractPage{1}
+\newcommand\FirstNonAbstractPage{
+	\number\numexpr\LastAbstractPage+1\relax
+}
+
+% ----------- Document ---------------------------- %
 \title{The thesis title}
 \author{Authour name}
 
@@ -80,13 +89,6 @@ To render the bibliography we need to add some random citation. Therefore we inc
 \clearpage
 \renewcommand{\thepage}{$\aleph$}
 
-
-% ~~~~~~~~~~~~~~~~~  WARNING ~~~~~~~~~~~~~~~~~~~~~~
-% You must redefine this value to the correct number of pages of the hebrew abstract (or more precisely -- the number of pages you want to appear numbered in hebrew)
-\newcommand\LastAbstractPage{1}
-\newcommand\FirstNonAbstractPage{
-	\number\numexpr\LastAbstractPage+1\relax
-	}
 % Include the hebrew abstract, while adding it to the TOC.
 \includepdf[pages=1-\LastAbstractPage, pagecommand={\phantomsection\addcontentsline{toc}{section}{Hebrew Abstract}}]{hebrew_abstract.pdf}
 % Hebrew title page and acknowledgement without appearing in TOC or numbered
