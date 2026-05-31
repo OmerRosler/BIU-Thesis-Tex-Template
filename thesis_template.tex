@@ -2,7 +2,6 @@
 \input{hebrew_input}
 \setdefaultlanguage{english}
 \setotherlanguage[numerals=hebrew]{hebrew}
-
 \title{The thesis title}
 \author{Author name}
 
@@ -102,10 +101,7 @@ Integer in molestie elit. Phasellus vel risus mauris. Donec eleifend pretium orc
 % This is where the TOC entry of the hebrew abstract link to. Change the label as you please
 \phantomsection\label{sec:hebrew_abstract}
 % Add hebrew abstract to TOC with an english name and explicit alpeh letter for page number
-\robustify{\thepage}
-\addtocontents{toc}{\protect\renewcommand\thepage{\texthebrew{\protect\hebrewnumeral{1}}}}
-\addcontentsline{toc}{section}{Hebrew Abstract}
-\addtocontents{toc}{\protect\renewcommand\thepage{\alph{page}}}
+\addhebrewtoctitle{Hebrew Abstract}
 
 \begin{otherlanguage}[numerals=hebrew]{hebrew}
 % Hebrew abstract goes here
