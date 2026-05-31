@@ -19,9 +19,10 @@
 	{\bf שם המנחה בבולד
 	} מן המחלקה למתמטיקה של אוניברסיטת בר־אילן.}
 
-\acktext{Acknowledge whoever you want here}
+% [Optional] Acknowledgement text
+\acktext{Acknowledge whoever you want here.}
 \begin{document}
-% Custom title page
+% Mandatory title page
 \begin{titlepage}
 	\makeatletter
 	\begin{center}
@@ -43,17 +44,21 @@
 		\vspace*{\fill}
 		\textbf{Ramat Gan, Israel}
 		\hfill
+		% TODO: Extract the year from the date metadata (which is usually overriden by the user)
 		\textbf{\the\year{}}
 	\end{center}
 	\makeatother
 \end{titlepage}
 
+% Mandatory advisors page
 \makeadvisorspage
+% [Optional] Acknowledgement page
 \makeackpage
 
+% TOC page
 \tableofcontents
-\newpage
 
+% Abstract page
 \begin{abstract}
 	The abstract
 \end{abstract}
@@ -62,16 +67,23 @@
 \section{Actual content of the thesis}
 Your content goes here.
 To render the bibliography in this template, we need to add some random citation. Therefore we include the link to the installation guide of Lyx with Hebrew \cite{lyxguide}. With this setup for your \LaTeX, this template should work just fine.
-\subsection{ Lorem Ipsum}
+\subsection{Lorem Ipsum}
 \lipsum\lipsum
 
 % ------------- end of content ----------------- %
 
+% Bibliography
 \bibliographystyle{alpha}
-% Your bibliogrpahy file should be refs.bib (or change the name here)
 \bibliography{refs}
 
+% The hebrew version of your abstract
 \begin{hebrewabstract}
+	נוודא את נוסחאת אוילר
+	$ e^{\pi i} + 1 = 0$. אכן, נציב בנוסחא הכללית
+$$ e^{ix}=\cos(x)+i\sin(x)$$
+עם
+$x=\pi$.
+בקיצור, הצלחנו לכתוב משוואות גם עם \$ \$ וגם עם \$\$ \$\$ בטקסט בעברית בלי שום בעיה.\\
 	לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.
 	
 	סחטיר בלובק. תצטנפל בלינדו למרקל אס לכימפו, דול, צוט ומעיוט - לפתיעם ברשג - ולתיעם גדדיש. קוויז דומור ליאמום בלינך רוגצה. לפמעט מוסן מנת. קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.
@@ -99,6 +111,9 @@ To render the bibliography in this template, we need to add some random citation
 	
 	להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורךגולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט. להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורך. קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי קולורס מונפרד אדנדום סילקוף, מרגשי ומרגשח. עמחליף ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.
 \end{hebrewabstract}
+
+% Mandatory hebrew advisors page
 \makehebadvisorspage
+% Mandatory hebrew cover page
 \makehebcoverpage
 \end{document}

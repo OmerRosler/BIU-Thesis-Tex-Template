@@ -24,6 +24,7 @@
 
 % Package logic
 
+% TODO: Document each feature separately. There is a tool in latex to document classes: use .dtx file instead of .cls. We run it using a tool called DocStrip with the package doc (or something more new). This way we autogenerate docs.
 % Add abstract to TOC
 % Save the original abstract environment behavior
 \let\oldabstract\abstract
@@ -38,10 +39,11 @@
 	\oldabstract
 }{
 	\endoldabstract
-	\clearpage                    % Ensure we finish the abstract page before reverting
-	\pagenumbering{arabic}        % Switch back to standard 1, 2, 3... for the main text
+	\clearpage
+	\pagenumbering{arabic}
 }
 
+% TODO: Document that if we view the page number in an external pdf viewer, it still shows it with english numerals (I don't know if this can be fixed)
 % Define hebrew page numbering layout
 % Adapted from a Stack Overflow answer by user 'John Kormylo'
 % Source: https://tex.stackexchange.com/a/303111/442136
@@ -87,9 +89,15 @@
 	\clearpage
 }
 
+% TODO: Debug why this never runs. there is a stackoverflow answer for debugging who edits maketitle
+\makeatletter
+\renewcommand{\maketitle}{$ ( $)}
+\makeatother
+
+
+% The [optional] acknowlegement page
 \makeatletter
 
-% 1. Create the blank storage macro for the text
 \def\@acktext{}
 \newcommand{\acktext}[1]{%
 	\def\@acktext{#1}%
@@ -105,7 +113,7 @@
 	\pagenumbering{arabic}
 }
 
-
+% The english advisors page
 \makeatletter
 
 \def\@advisorstext{}
@@ -134,6 +142,7 @@
 \makeatother
 
 
+% The hebrew advisors page
 \makeatletter
 
 \def\@advisorstextheb{}
@@ -164,6 +173,7 @@
 
 \makeatother
 
+% The hebrew cover page
 
 \makeatletter
 \def\@qualificationtext{}
@@ -207,6 +217,7 @@
 		\vspace*{\fill}
 		\textbf{רמת גן}
 		\hfill
+		% TODO: Extract year from date metadata (which can be overriden by the user)
 		\textbf{תשפ"ה}
 	
 \end{center}
@@ -217,29 +228,32 @@
 
 \makeatother
 
+% Disable page numbering on Bibliography page
 \makeatletter
-
-% Before the Table of Contents executes:
+% TODO: Reconsider how this is implemented: if the class is used with multiple TOCs (for example when using an article based thesis, this applies to all of them). Maybe add a command that wraps the bib creation?
+% Before the Table of Contents executes
 \pretocmd{\tableofcontents}{%
 	\clearpage
 	% Save the current page counter value into a temporary macro
 	\edef\BIU@savedpage{\the\value{page}}%
-	% Completely swallow all page numbers natively
+	% swallow all page numbers natively
 	\pagenumbering{gobble}%
 }{}{}
 
-% After the Table of Contents finishes:
+% After the Table of Contents finishes
 \apptocmd{\tableofcontents}{%
 	\clearpage
 	% Reactivate Arabic page numbers for the rest of the thesis body
 	\pagenumbering{arabic}%
-	% Restore the exact page counter value so your page tracking is seamless
+	% Restore the exact page counter value
 	\setcounter{page}{\BIU@savedpage}%
 }{}{}
 
 \makeatother
+
+
 \makeatletter
-% Single-pass enforcement checks at the end of the document
+% Single-pass enforcement checks at the end of the document: these validate we called the commands that create the custom pages (but not their correct order)
 \AtEndDocument{
 	\ifdefined\BIU@advisorspage@compiled
 	\else
@@ -253,6 +267,13 @@
 	\ClassError{biumasterthesis}{Missing \string\makehebadvisorspage}{%
 		The university requires an advisors page in the hebrew.\MessageBreak
 		Please place \string\makehebadvisorspage\space exactly where it belongs in your layout.%
+	}
+	\fi
+	\ifdefined\BIU@hebcoverpage@compiled
+	\else
+	\ClassError{biumasterthesis}{Missing \string\makehebcoverpage}{%
+		The university requires a hebrew cover page.\MessageBreak
+		Please place \string\makehebcoverpage\space exactly where it belongs in your layout.%
 	}
 	\fi
 

@@ -1,5 +1,8 @@
+% TODO: Move the hebrew font and line control to the class itself with options
+% TODO: Once all options are moved, the only line remaining in this file is the options of hyperref. So remove this file and move it to the main thesis. Add a remark these options are user specific and are not required by the template. While at it, properly use lipsum in the file (and explain it is just a user include)
+% TODO: Debug requirement problem: if the user does not include hyperref (even tough it is supposed to be required by the class), it throws some error
 \usepackage[bookmarks=true, bookmarksnumbered=true, bookmarksopen=true]{hyperref} % To control the TOC
-\usepackage{polyglossia} % To use hebrew
+
 \usepackage{fontspec} % To control hebrew fonts
 \usepackage{setspace} % To control line spacing
 % Hebrew font chosen: Arial
