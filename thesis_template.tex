@@ -1,20 +1,13 @@
-\documentclass[10pt,a4paper,final]{article}
-% ----------- Premable ---------------------------- %
-\usepackage{pdfpages} % For includepdf
-\usepackage{hyperref} % For phantomsection
+\documentclass[12pt,a4paper,final]{article}
+\input{hebrew_input}
+\setdefaultlanguage{english}
+\setotherlanguage[numerals=hebrew]{hebrew}
 
-% You must redefine this value to the correct number of pages of the hebrew abstract (or more precisely -- the number of pages you want to appear numbered in hebrew)
-\newcommand\LastAbstractPage{1}
-\newcommand\FirstNonAbstractPage{
-	\number\numexpr\LastAbstractPage+1\relax
-}
-
-% ----------- Document ---------------------------- %
 \title{The thesis title}
 \author{Author name}
 
 \begin{document}
-% Custom title page per library requirements
+% Custom title page
 \begin{titlepage}
 	\makeatletter
 	\begin{center}
@@ -40,37 +33,55 @@
 	\end{center}
 	\makeatother
 \end{titlepage}
-% Non numbered pages until the abstract
-\pagenumbering{gobble}
+\pagenumbering{gobble} % Do not number pages until the abstract
+
+
+% Advisor page
 \vspace*{\fill}
 \begin{center}
 	This work was carried out under the supervision of {\bf  ADVISOR NAME } \\
 	Department of Mathematics, Bar-Ilan University.
 \end{center}
 \vspace*{\fill}
+
+
+% Acknowledgement page
 \newpage
 \textbf{Acknowledgments}\\
 Acknowledge whoever you want here
 
+
 \newpage
+% TOC page
 \tableofcontents
 \newpage
-% Abstract page numbering is roman
-\pagenumbering{roman}
+
+
+\pagenumbering{roman} % Abstract pages numbered in roman
 \begin{abstract}
 	% Add the abstract to the TOC
 	\phantomsection
 	\addcontentsline{toc}{section}{Abstract}
-	abstract of the thesis
+	The abstract
 \end{abstract}
 \newpage
 
 % The actual thesis uses regular page numbers
-\pagenumbering{arabic}
+\pagenumbering{arabic} % The content is numbered with regular numbers
 % ------------- start of content --------------- %
 \section{Actual content of the thesis}
-To render the bibliography we need to add some random citation. Therefore we include the link to the installation guide of Lyx with Hebrew \cite{lyxguide}. With this setup for your LateX, this template should work just fine.
+Your content goes here.
+To render the bibliography in this template, we need to add some random citation. Therefore we include the link to the installation guide of Lyx with Hebrew \cite{lyxguide}. With this setup for your \LaTeX, this template should work just fine. The rest of the text is the standard gibberish "lorem ipsum":
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur iaculis nunc et sagittis vulputate. Maecenas pellentesque mi felis, ac ultrices enim sodales at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras ut velit aliquet, blandit quam in, tempor nulla. Aenean mattis vulputate velit aliquet dictum. Integer sed sem venenatis, consequat sem ornare, feugiat justo. Aliquam et quam non est laoreet suscipit ac vitae diam. Mauris hendrerit, lorem ut pulvinar venenatis, mauris odio dignissim odio, non feugiat dolor dolor facilisis metus. Donec nec lorem porta, tristique sapien ullamcorper, dapibus sem. Nunc sed ipsum non odio finibus aliquam. Aenean turpis urna, eleifend nec molestie et, scelerisque eget leo.
+
+Cras ullamcorper tortor leo, nec suscipit elit tristique a. In congue dolor id mollis auctor. Nullam id tincidunt leo. Quisque venenatis eleifend est in pellentesque. Nulla mollis aliquet eros, et vestibulum ligula consequat non. Curabitur consectetur est metus, ultricies mollis lacus rutrum ac. Integer tempus a turpis id tristique. Fusce blandit dui in est malesuada varius. Sed aliquet, mauris congue ultrices luctus, odio nulla mattis nibh, ac porttitor elit nunc et tortor. Aliquam augue quam, consectetur a mauris sed, pretium pulvinar magna. Nullam ac volutpat mauris, malesuada posuere augue.
+
+Nulla ac blandit urna, quis laoreet orci. Suspendisse neque enim, tempor venenatis egestas at, malesuada nec erat. Sed lorem massa, tristique a hendrerit id, gravida ultrices eros. Nam sagittis eleifend tempus. Sed at malesuada purus, eleifend consectetur massa. Vestibulum aliquam magna at odio dignissim, cursus vulputate elit ullamcorper. Pellentesque pharetra eros ut est mollis, id tempus sem gravida. Vestibulum id nunc at risus commodo gravida et ut neque. Sed sem felis, egestas semper aliquet id, euismod nec sem. Quisque ac nisi ac mi laoreet porta a in dolor. Morbi gravida dui eget dolor lacinia, in pharetra lacus bibendum. Vivamus arcu nulla, cursus a consequat eget, commodo sit amet massa.
+
+Suspendisse potenti. Fusce bibendum nisi quis tempus congue. Aliquam eu enim et quam ullamcorper pharetra lacinia id metus. Ut pulvinar tortor in neque pellentesque, finibus hendrerit tellus lacinia. Aliquam erat volutpat. Proin quis suscipit lorem. Praesent ut venenatis ex. Nullam lacinia odio id ligula blandit eleifend. In vitae nisi vel ligula mollis hendrerit. Donec eu neque id augue dictum congue. Nam elementum imperdiet tortor, sit amet egestas ipsum consectetur et. Pellentesque tempus posuere libero quis convallis. Quisque id tellus interdum, porta magna at, sollicitudin nibh.
+
+Integer in molestie elit. Phasellus vel risus mauris. Donec eleifend pretium orci, vitae dictum neque scelerisque a. Vestibulum at efficitur quam. Aliquam sit amet blandit quam. In ac consequat tortor. Praesent a bibendum ante. Quisque ac erat fringilla, posuere nibh vitae, vehicula mauris. 
 
 % ------------- end of content ----------------- %
 
@@ -78,20 +89,91 @@ To render the bibliography we need to add some random citation. Therefore we inc
 % Add the bibliography to TOC
 \phantomsection
 \addcontentsline{toc}{section}{References}
-% The bibliogrpahy style
+% The bibliogrpahy style can be configured
 \bibliographystyle{alpha}
 % Your bibliogrpahy file should be refs.bib (or change the name here)
 \bibliography{refs}
-
-
-% --------- Hebrew pages in the end ------------ %
-% Hebrew abstract appears in TOC with Hebrew alphabet nummerbing
 \clearpage
-\renewcommand{\thepage}{$\aleph$}
 
-% Include the hebrew abstract, while adding it to the TOC.
-\includepdf[pages=1-\LastAbstractPage, pagecommand={\phantomsection\addcontentsline{toc}{section}{Hebrew Abstract}}]{hebrew_abstract.pdf}
-% Hebrew title page and acknowledgement without appearing in TOC or numbered
-\includepdf[pages={\FirstNonAbstractPage-}]{hebrew_abstract.pdf}
+% Change to hebrew layout (fonts, RTL, page numbering)
+\pagenumbering{alph}
+\pagestyle{hebrew}
 
+% This is where the TOC entry of the hebrew abstract link to. Change the label as you please
+\phantomsection\label{sec:hebrew_abstract}
+% Add hebrew abstract to TOC with an english name and explicit alpeh letter for page number
+\robustify{\thepage}
+\addtocontents{toc}{\protect\renewcommand\thepage{\texthebrew{\protect\hebrewnumeral{1}}}}
+\addcontentsline{toc}{section}{Hebrew Abstract}
+\addtocontents{toc}{\protect\renewcommand\thepage{\alph{page}}}
+
+\begin{otherlanguage}[numerals=hebrew]{hebrew}
+% Hebrew abstract goes here
+\section*{תקציר}
+	לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.
+	
+	סחטיר בלובק. תצטנפל בלינדו למרקל אס לכימפו, דול, צוט ומעיוט - לפתיעם ברשג - ולתיעם גדדיש. קוויז דומור ליאמום בלינך רוגצה. לפמעט מוסן מנת. קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.
+	
+	גולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.
+	
+	נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.
+	
+	הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.
+	
+	נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף לפרומי בלוף קינץ תתיח לרעח. לת צשחמי צש בליא, מנסוטו צמלח לביקו ננבי, צמוקו בלוקריה שיצמה ברורק.
+	
+	להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורךגולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט. להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורך. קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי קולורס מונפרד אדנדום סילקוף, מרגשי ומרגשח. עמחליף ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.
+	לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.
+	
+	סחטיר בלובק. תצטנפל בלינדו למרקל אס לכימפו, דול, צוט ומעיוט - לפתיעם ברשג - ולתיעם גדדיש. קוויז דומור ליאמום בלינך רוגצה. לפמעט מוסן מנת. קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.
+	
+	גולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.
+	
+	נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.
+	
+	הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.
+	
+	נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף לפרומי בלוף קינץ תתיח לרעח. לת צשחמי צש בליא, מנסוטו צמלח לביקו ננבי, צמוקו בלוקריה שיצמה ברורק.
+	
+	להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורךגולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט. להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורך. קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי קולורס מונפרד אדנדום סילקוף, מרגשי ומרגשח. עמחליף ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.
+
+\end{otherlanguage}
+
+% From here out, do not number any page
+\newpage
+\pagestyle{plain}
+\pagenumbering{gobble}
+
+
+% Advisor page in hebrew
+\begin{otherlanguage}{hebrew}
+\vspace*{\fill}
+עבודה זו נעשתה בהדרכתו של
+{\bf 
+	שם המנחה בבולד
+}
+מן המחלקה למתמטיקה של אוניברסיטת בר־אילן.
+\vspace*{\fill}
+
+% Hebrew cover page
+\newpage
+
+\begin{center}		אוניברסיטת בר אילן\\
+		\vspace*{3cm}
+	\textbf{\Large כותרת בעברית}
+	\vspace{2cm}
+	
+	\vspace{2.5cm}
+	
+	\textbf{שם הכותב}
+	
+	\vspace{1cm}		עבודה זו מוגשת כחלק מהדרישות לשם קבלת תואר מוסמך במחלקה למתמטיקה של אוניברסיטת בר-אילן
+		
+	\vspace*{\fill}
+	\textbf{רמת גן}
+	\hfill
+	\textbf{תשפ"ה}
+	
+\end{center}
+\end{otherlanguage}
 \end{document}
