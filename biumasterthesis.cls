@@ -21,7 +21,6 @@
 \RequirePackage{fontspec} % To control hebrew fonts
 \RequirePackage{setspace} % To control line spacing
 % Package logic
-
 % TODO: Document each feature separately. There is a tool in latex to document classes: use .dtx file instead of .cls. We run it using a tool called DocStrip with the package doc (or something more new). This way we autogenerate docs.
 % Add abstract to TOC
 % Save the original abstract environment behavior
@@ -87,7 +86,39 @@
 	\clearpage
 }
 
+% Extract year from current date, unless one already provided by the user. Both for english and hebrew cover pages. If one custom year was submitted, the other must as well
 \makeatletter
+\newif\if@thesisyear@defined
+\newif\if@thesishebrewyear@defined
+\newcommand{\thesisyear}[1]{
+	\def\@thesisyear{#1}
+	\gdef\@thesisyear@called{}
+}
+\newcommand{\@printthesisyear}{%
+	\ifdefined\@thesisyear
+		\@thesisyear
+	\else
+		\the\year
+	\fi
+}
+
+
+\newcommand{\thesishebrewyear}[1]{
+	\def\@thesishebrewyear{#1}
+	\gdef\@thesishebrewyear@called{}
+}
+\newcommand{\@printthesishebrewyear}{%
+	\ifdefined\@thesishebrewyear
+	\@thesishebrewyear % User defined it explicitly
+	\else
+	% Fallback: Force polyglossia to calculate the raw Hebrew year integer,
+	% strip the 5000 millennia digit, and pass the number to the clean public numeral engine.
+	\hebrewsetreg
+	\Hebrewnumeral{\numexpr\hebrewyear-5000\relax}%
+	\fi
+}
+
+% Define custom title page
 \AtEndPreamble{
 \renewcommand{\maketitle}{%
 \begin{titlepage}
@@ -109,8 +140,7 @@
 	\vspace*{\fill}
 	\textbf{Ramat Gan, Israel}
 	\hfill
-	% TODO: Extract the year from the date metadata (which is usually overriden by the user)
-	\textbf{\the\year{}}
+	\textbf{\@printthesisyear}
 \end{center}
 \end{titlepage}
 
@@ -218,6 +248,8 @@
 \newcommand{\authorheb}[1]{%
 	\def\@authorheb{#1}%
 }
+
+
 \newcommand{\makehebcoverpage}{%
 \begin{otherlanguage}{hebrew}
 	\pagestyle{plain}
@@ -240,8 +272,7 @@
 		\vspace*{\fill}
 		\textbf{רמת גן}
 		\hfill
-		% TODO: Extract year from date metadata (which can be overriden by the user)
-		\textbf{תשפ"ה}
+		\textbf{\@printthesishebrewyear}
 	
 \end{center}
 \end{otherlanguage}
@@ -298,6 +329,25 @@
 		The university requires a hebrew cover page.\MessageBreak
 		Please place \string\makehebcoverpage\space exactly where it belongs in your layout.%
 	}
+	\fi
+	\ifdefined\@thesisyear@called
+	\ifdefined\@thesishebrewyear@called\else
+	\ClassError{biumasterthesis}{%
+		You defined \protect\thesisyear\space but forgot \protect\thesishebrewyear.%
+	}{%
+		Both custom years must be specified together to keep cover pages in sync.%
+	}%
+	\fi
+	\fi
+	%
+	\ifdefined\@thesishebrewyear@called
+	\ifdefined\@thesisyear@called\else
+	\ClassError{biumasterthesis}{%
+		You defined \protect\thesishebrewyear\space but forgot \protect\thesisyear.%
+	}{%
+		Both custom years must be specified together to keep cover pages in sync.%
+	}%
+	\fi
 	\fi
 
 }
