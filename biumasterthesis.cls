@@ -1,6 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{biumasterthesis}[BIU Master Thesis Class]
-
 % Options
 \DeclareOption*{
 	\PassOptionsToClass{\CurrentOption}{article}
@@ -21,7 +20,6 @@
 \RequirePackage{polyglossia} % To use hebrew
 \RequirePackage{fontspec} % To control hebrew fonts
 \RequirePackage{setspace} % To control line spacing
-
 % Package logic
 
 % TODO: Document each feature separately. There is a tool in latex to document classes: use .dtx file instead of .cls. We run it using a tool called DocStrip with the package doc (or something more new). This way we autogenerate docs.
@@ -89,11 +87,36 @@
 	\clearpage
 }
 
-% TODO: Debug why this never runs. there is a stackoverflow answer for debugging who edits maketitle
 \makeatletter
-\renewcommand{\maketitle}{$ ( $)}
-\makeatother
+\AtEndPreamble{
+\renewcommand{\maketitle}{%
+\begin{titlepage}
+\begin{center}
+	Bar-Ilan University\\
+	\vspace*{1cm}
+	\vspace{2cm}
+	
+	\textbf{\Large \@title}
+	
+	\vspace{2.5cm}
+	
+	\textbf{\@author}
+	
+	\vspace{1cm}
+	
+	\@qualificationtext
+	
+	\vspace*{\fill}
+	\textbf{Ramat Gan, Israel}
+	\hfill
+	% TODO: Extract the year from the date metadata (which is usually overriden by the user)
+	\textbf{\the\year{}}
+\end{center}
+\end{titlepage}
 
+}
+}
+\makeatother
 
 % The [optional] acknowlegement page
 \makeatletter
