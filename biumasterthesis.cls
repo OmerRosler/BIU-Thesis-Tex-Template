@@ -283,27 +283,9 @@
 \makeatother
 
 % Disable page numbering on Bibliography page
-\makeatletter
-% TODO: Reconsider how this is implemented: if the class is used with multiple TOCs (for example when using an article based thesis, this applies to all of them). Maybe add a command that wraps the bib creation?
-% Before the Table of Contents executes
-\pretocmd{\tableofcontents}{%
-	\clearpage
-	% Save the current page counter value into a temporary macro
-	\edef\BIU@savedpage{\the\value{page}}%
-	% swallow all page numbers natively
-	\pagenumbering{gobble}%
-}{}{}
+\AddToHook{cmd/tableofcontents/before}{\clearpage\pagestyle{empty}}
+\AddToHook{cmd/tableofcontents/after}{\clearpage\pagestyle{plain}}
 
-% After the Table of Contents finishes
-\apptocmd{\tableofcontents}{%
-	\clearpage
-	% Reactivate Arabic page numbers for the rest of the thesis body
-	\pagenumbering{arabic}%
-	% Restore the exact page counter value
-	\setcounter{page}{\BIU@savedpage}%
-}{}{}
-
-\makeatother
 
 
 \makeatletter
