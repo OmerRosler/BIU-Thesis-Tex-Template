@@ -17,7 +17,7 @@
 }
 
 \RequirePackage[nottoc]{tocbibind}
-\RequirePackage{polyglossia} % To use hebrew
+
 \RequirePackage{fontspec} % To control hebrew fonts
 \RequirePackage{setspace} % To control line spacing
 % Package logic
@@ -119,7 +119,7 @@
 }
 
 % Define custom title page
-\AtEndPreamble{
+\AtBeginDocument{
 \renewcommand{\maketitle}{%
 \begin{titlepage}
 \begin{center}
@@ -334,5 +334,15 @@
 
 }
 
+\AtEndPreamble{%
+	% Check if user loaded hyperref. If they didn't, load it here as a fallback.
+	\@ifpackageloaded{hyperref}{}{%
+		\RequirePackage{hyperref}%
+	}%
+	% Now load polyglossia. It will pull in bidi, whcih requires hyperref to be already fully loaded
+	\RequirePackage{polyglossia}%
+	\setmainlanguage{english}%
+	\setotherlanguage[numerals=hebrew]{hebrew}
+}
 \makeatother
 
