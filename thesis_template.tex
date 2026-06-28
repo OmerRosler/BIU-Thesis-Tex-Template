@@ -1,14 +1,11 @@
-\documentclass[12pt, final]{biumasterthesis}
-
-% Load hyperref with custom options, if none selected, the class loads it with no options
+% Use the custom class, all options are passed to article class except for `hebrewstretch` which control hebrew line spacing, and have a default value of `1.3`
+\documentclass[12pt, final, hebrewstretch=1.3]{biumasterthesis}
+% [Optional] Load hyperref with custom options. If you don't load it yourself, it is loaded by the class with no options
 \usepackage[bookmarks=true, bookmarksnumbered=true, bookmarksopen=true]{hyperref}
 
-%\usepackage{fontspec} % To control hebrew fonts
-% [Optional] Set hebrew font manually, default is Arial
+% [Optional] Set hebrew font manually using `fontspec` pacakage, default is Arial
+%\usepackage{fontspec}
 %\newfontfamily\hebrewfont{David}[Script=Hebrew]
-% [Optional] Set hebrew line spacing manually, default is 1.3
-%\renewcommand{\hebrewstretch}{1.9}
-
 \usepackage{lipsum}
 
 \title{The thesis title}

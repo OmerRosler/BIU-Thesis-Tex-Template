@@ -1,6 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{biumasterthesis}[BIU Master Thesis Class]
 % Options
+\makeatletter
+\DeclareKeys[biumasterthesis]{
+	hebrewstretch.store      = \@biuthesis@hebstretch,
+	hebrewstretch.initial:n  = 1.3,
+}
+\makeatother
+
+\ProcessKeyOptions[biumasterthesis]
+
 \DeclareOption*{
 	\PassOptionsToClass{\CurrentOption}{article}
 }
@@ -334,10 +343,6 @@
 
 }
 
-% Command to control line spacing, user can re
-\newcommand{\hebrewstretch}{1.3}
-
-
 \AtEndPreamble{%
 	% Check if user loaded hyperref. If they didn't, load it here as a fallback.
 	\@ifpackageloaded{hyperref}{}{%
@@ -349,12 +354,11 @@
 	\setotherlanguage[numerals=hebrew]{hebrew}
 	% If the user DID NOT define \hebrewfont in their preamble, provide the class default.
 	\ifdefined\hebrewfont\else
-	\newfontfamily\hebrewfont{Arial}[Script=Hebrew]%
+		\newfontfamily\hebrewfont{Arial}[Script=Hebrew]%
 	\fi
 	
 	% Globally append the spacing configuration to whatever \hebrewfont is active
-	% (whether it's your default Arial or a custom font the user chose).
-	\g@addto@macro\hebrewfont{\setstretch{\hebrewstretch}}%
+	\g@addto@macro\hebrewfont{\setstretch{\@biuthesis@hebstretch}}
 }
 \makeatother
 
