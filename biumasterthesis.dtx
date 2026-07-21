@@ -1,3 +1,26 @@
+% \iffalse
+%<*driver>
+\documentclass{ltxdoc}
+\begin{document}
+\DocInput{biumasterthesis.dtx}
+\end{document}
+%</driver>
+% \fi
+
+% \title{The biumasterthesis class }
+% \author{Your Name}
+%
+% \maketitle
+%
+% \section{Introduction}
+%
+% This class...
+%
+% \section{Implementation}
+
+%    \begin{macrocode}
+%<*class>
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{biumasterthesis}[BIU Master Thesis Class]
 % Options
@@ -50,11 +73,11 @@
 	\pagenumbering{arabic}
 }
 
-% TODO: Document that if we view the page number in an external pdf viewer, it still shows it with english numerals (I don't know if this can be fixed)
-% Define hebrew page numbering layout
-% Adapted from a Stack Overflow answer by user 'John Kormylo'
-% Source: https://tex.stackexchange.com/a/303111/442136
-% Licensed under CC-BY-SA 3.0
+%% TODO: Document that if we view the page number in an external pdf viewer, it still shows it with english numerals (I don't know if this can be fixed)
+%% Define hebrew page numbering layout
+%% Adapted from a Stack Overflow answer by user 'John Kormylo'
+%% Source: https://tex.stackexchange.com/a/303111/442136
+%% Licensed under CC-BY-SA 3.0
 \makeatletter
 \def\ps@hebrew{%
 	\let\@oddhead\relax
@@ -65,14 +88,14 @@
 	\let\@evenfoot\@oddfoot}
 \makeatother
 
-% Add the hebrew numbered section to TOC
-% Adapted from a Stack Overflow answer by user 'user2679290'
-% Source: https://tex.stackexchange.com/a/617122/442136
-% Licensed under CC-BY-SA 4.0
-% It does three things: 
-% 1. Replace \thepage with the letter aleph (we need robustify as this is not run directly)
-% 2. Adds a section to the TOC with this aleph as page number (and correct link as we use the hyperref version of \addcontentsline)
-% 3. Restore \thepage to its last value (we assume the location we called the command is just before the abstract and have alph pagenumbering)
+%% Add the hebrew numbered section to TOC
+%% Adapted from a Stack Overflow answer by user 'user2679290'
+%% Source: https://tex.stackexchange.com/a/617122/442136
+%% Licensed under CC-BY-SA 4.0
+%% It does three things: 
+%% 1. Replace \thepage with the letter aleph (we need robustify as this is not run directly)
+%% 2. Adds a section to the TOC with this aleph as page number (and correct link as we use the hyperref version of \addcontentsline)
+%% 3. Restore \thepage to its last value (we assume the location we called the command is just before the abstract and have alph pagenumbering)
 \newcommand{\addhebrewtoctitle}[1]{\robustify{\thepage}
 	\addtocontents{toc}{\protect\renewcommand\thepage{\texthebrew{\protect\hebrewnumeral{1}}}}
 	\addcontentsline{toc}{section}{#1}
@@ -372,3 +395,7 @@
 }
 \makeatother
 
+%</class>
+%    \end{macrocode}
+
+% \Finale
